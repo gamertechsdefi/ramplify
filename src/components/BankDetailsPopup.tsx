@@ -100,11 +100,11 @@ export default function BankDetailsPopup({
             <h3 className="font-semibold text-gray-900 mb-3">Transaction Summary</h3>
             <div className="space-y-2 text-sm">
               <div className="flex justify-between">
-                <span className="text-gray-600">You're sending:</span>
+                <span className="text-gray-600">You&apos;re sending:</span>
                 <span className="font-semibold">₦{parseFloat(nairaAmount || '0').toLocaleString()}</span>
               </div>
               <div className="flex justify-between">
-                <span className="text-gray-600">You'll receive:</span>
+                <span className="text-gray-600">You&apos;ll receive:</span>
                 <span className="font-semibold">{cryptoAmount} {selectedCrypto}</span>
               </div>
               <div className="flex justify-between">
@@ -231,7 +231,7 @@ export default function BankDetailsPopup({
                 <p className="font-semibold text-yellow-800 mb-1">Important:</p>
                 <ul className="text-yellow-700 space-y-1">
                   <li>• Send exactly ₦{parseFloat(nairaAmount || '0').toLocaleString()}</li>
-                  <li>• Use "Ramplify-{Date.now().toString().slice(-6)}" as reference</li>
+                  <li>• Use &quot;Ramplify-{Date.now().toString().slice(-6)}&quot; as reference</li>
                   <li>• Your crypto will be sent within 10 minutes after confirmation</li>
                 </ul>
               </div>

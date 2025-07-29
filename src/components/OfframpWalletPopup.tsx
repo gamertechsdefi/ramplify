@@ -73,11 +73,11 @@ export default function OfframpWalletPopup({
             <h3 className="font-semibold text-gray-900 mb-3">🔄 Offramp Transaction</h3>
             <div className="space-y-2 text-sm">
               <div className="flex justify-between">
-                <span className="text-gray-600">You're sending:</span>
+                <span className="text-gray-600">You&apos;re sending:</span>
                 <span className="font-semibold">{cryptoAmount} {selectedCrypto}</span>
               </div>
               <div className="flex justify-between">
-                <span className="text-gray-600">You'll receive:</span>
+                <span className="text-gray-600">You&apos;ll receive:</span>
                 <span className="font-semibold">₦{parseFloat(nairaAmount).toLocaleString()}</span>
               </div>
               <div className="flex justify-between">
@@ -139,7 +139,7 @@ export default function OfframpWalletPopup({
                 <p className="font-semibold text-yellow-800 mb-1">Important Instructions:</p>
                 <ul className="text-yellow-700 space-y-1">
                   <li>• Send exactly <strong>{cryptoAmount} {selectedCrypto}</strong> to the address above</li>
-                  <li>• Make sure you're sending on the correct network (Ethereum/Polygon)</li>
+                  <li>• Make sure you&apos;re sending on the correct network (Ethereum/Polygon)</li>
                   <li>• Your naira will be sent within 30 minutes after confirmation</li>
                   <li>• Do not send any other cryptocurrency to this address</li>
                 </ul>
@@ -159,7 +159,7 @@ export default function OfframpWalletPopup({
               onClick={onConfirm}
               className="flex-1 px-6 py-3 bg-red-600 hover:bg-red-700 text-white font-semibold rounded-xl transition-colors"
             >
-              I've Sent the Crypto
+              I&apos;ve Sent the Crypto
             </button>
           </div>
         </div>

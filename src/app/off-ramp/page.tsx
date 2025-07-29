@@ -191,7 +191,7 @@ export default function OffRamp() {
                 <h1 className="text-3xl font-bold text-center mb-6">Offramp crypto</h1>
                 <form onSubmit={handleSubmit} className="w-full flex flex-col gap-4 bg-white border-2 border-green-300 p-6 rounded-2xl">
                     <div className="w-full flex flex-col gap-2 bg-green-100 p-4 rounded-xl">
-                        <label className="text-xl font-semibold text-gray-700">You'll send</label>
+                        <label className="text-xl font-semibold text-gray-700">You&apos;ll send</label>
                         <div className="flex justify-between items-center w-full">
                             <input
                                 type="number"
@@ -218,7 +218,7 @@ export default function OffRamp() {
                     </div>
 
                     <div className="w-full flex flex-col gap-2 bg-green-100 p-4 rounded-xl">
-                        <label className="text-xl font-semibold text-gray-700">You'll receive</label>
+                        <label className="text-xl font-semibold text-gray-700">You&apos;ll receive</label>
                         <div className="flex justify-between items-center w-full">
                             <input
                                 type="number"
@@ -252,7 +252,7 @@ export default function OffRamp() {
                         </p>
                         <div className="border-t border-gray-200 pt-2">
                             <p className="text-sm font-bold text-gray-900 flex justify-between">
-                                <span>You'll receive</span>
+                                <span>You&apos;ll receive</span>
                                 <span className="text-green-600">₦{amounts.netNaira}</span>
                             </p>
                         </div>
