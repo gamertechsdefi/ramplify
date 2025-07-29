@@ -110,7 +110,7 @@ export default function BankDetailsPopup({
               <div className="flex justify-between">
                 <span className="text-gray-600">Exchange rate:</span>
                 <span className="font-semibold">
-                  {selectedCrypto === 'USDC' ? '1 USDC = ₦1,700' : '1 NGN = 0.000001 ETH'}
+                  {selectedCrypto === 'USDT' ? '1 USDT = ₦1,700' : '1 NGN = 0.000001 ETH'}
                 </span>
               </div>
             </div>

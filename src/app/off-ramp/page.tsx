@@ -13,7 +13,7 @@ interface Bank {
 
 export default function OffRamp() {
     const [cryptoAmount, setCryptoAmount] = useState<string>('');
-    const [selectedCrypto, setSelectedCrypto] = useState<string>('USDC');
+    const [selectedCrypto, setSelectedCrypto] = useState<string>('TETHER');
     const [exchangeRate, setExchangeRate] = useState<number>(0);
     const [banks, setBanks] = useState<Bank[]>([]);
     const [selectedBank, setSelectedBank] = useState<string>('');
@@ -27,25 +27,45 @@ export default function OffRamp() {
     // Platform fee
     const PLATFORM_FEE_PERCENTAGE = 1.5;
 
-    // Fetch exchange rate from CoinGecko
+    // Fetch exchange rate directly from CoinGecko
     const fetchExchangeRate = async (fromCurrency: string) => {
         setRateLoading(true);
         console.log('Fetching exchange rate for:', fromCurrency);
 
         try {
-            const response = await fetch(`/api/coingecko/rates?from=${fromCurrency}`);
-            const data = await response.json();
-            console.log('Rate API response:', data);
+            // Map currency to CoinGecko IDs
+            const coinGeckoIds: { [key: string]: string } = {
+                'TETHER': 'tether',
+                'ETH': 'ethereum'
+            };
 
-            if (data.success && data.rate) {
-                setExchangeRate(data.rate);
-                console.log('Set exchange rate to:', data.rate);
+            const coinId = coinGeckoIds[fromCurrency];
+            if (!coinId) {
+                console.error('Unsupported currency:', fromCurrency);
+                setExchangeRate(0);
+                return;
+            }
+
+            // Call CoinGecko API directly
+            const apiUrl = `https://api.coingecko.com/api/v3/simple/price?ids=${coinId}&vs_currencies=ngn`;
+            console.log('CoinGecko API URL:', apiUrl);
+
+            const response = await fetch(apiUrl);
+            const data = await response.json();
+            console.log('CoinGecko API response:', data);
+
+            // Extract rate from CoinGecko response
+            const rate = data[coinId]?.ngn;
+
+            if (rate) {
+                setExchangeRate(rate);
+                console.log('Set exchange rate to:', rate);
             } else {
-                console.error('Rate API failed:', data);
+                console.error('Rate not found in CoinGecko response:', data);
                 setExchangeRate(0); // Set to 0 to indicate failure
             }
         } catch (error) {
-            console.error('Error fetching exchange rate:', error);
+            console.error('Error fetching exchange rate from CoinGecko:', error);
             setExchangeRate(0); // Set to 0 to indicate failure
         } finally {
             setRateLoading(false);
@@ -205,7 +225,7 @@ export default function OffRamp() {
                                     value={selectedCrypto}
                                     onChange={(e) => setSelectedCrypto(e.target.value)}
                                 >
-                                    <option value="USDC">USDC</option>
+                                    <option value="TETHER">USDT</option>
                                     <option value="ETH">ETH</option>
                                 </select>
                             </div>
@@ -239,7 +259,7 @@ export default function OffRamp() {
                             <span className="font-semibold">
                                 {rateLoading ? 'Loading...' :
                                  exchangeRate === 0 ? '❌ Rate fetch failed' :
-                                 `1 ${selectedCrypto} = ₦${exchangeRate.toLocaleString()}`}
+                                 `1 ${selectedCrypto === 'TETHER' ? 'USDT' : selectedCrypto} = ₦${exchangeRate.toLocaleString()}`}
                             </span>
                         </p>
                         <p className="text-sm font-medium text-gray-700 flex justify-between">
@@ -257,8 +277,8 @@ export default function OffRamp() {
                             </p>
                         </div>
                         <p className="text-xs text-gray-500 flex justify-between">
-                            <span>Fee in {selectedCrypto}</span>
-                            <span>{amounts.feeInCrypto} {selectedCrypto}</span>
+                            <span>Fee in {selectedCrypto === 'TETHER' ? 'USDT' : selectedCrypto}</span>
+                            <span>{amounts.feeInCrypto} {selectedCrypto === 'TETHER' ? 'USDT' : selectedCrypto}</span>
                         </p>
                     </div>
 
@@ -338,7 +358,7 @@ export default function OffRamp() {
                 onClose={() => setShowWalletPopup(false)}
                 onConfirm={handleConfirmTransaction}
                 cryptoAmount={cryptoAmount}
-                selectedCrypto={selectedCrypto}
+                selectedCrypto={selectedCrypto === 'TETHER' ? 'USDT' : selectedCrypto}
                 nairaAmount={amounts.netNaira}
                 bankName={banks.find((bank: Bank) => bank.id === selectedBank)?.name || selectedBank}
                 accountName={accountName}

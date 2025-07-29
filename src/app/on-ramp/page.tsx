@@ -6,12 +6,12 @@ import BankDetailsPopup from "@/components/BankDetailsPopup";
 
 export default function OnRamp() {
     const [nairaAmount, setNairaAmount] = useState<string>('');
-    const [selectedCrypto, setSelectedCrypto] = useState<string>('USDC');
+    const [selectedCrypto, setSelectedCrypto] = useState<string>('USDT');
     const [showBankDetails, setShowBankDetails] = useState<boolean>(false);
     const [walletAddress, setWalletAddress] = useState<string>('');
 
     // Exchange rates and fees
-    const USDC_RATE = 1700; // 1700 NGN = 1 USDC
+    const USDT_RATE = 1700; // 1700 NGN = 1 USDT
     const ETH_RATE = 0.000001; // Keep existing ETH rate
     const PLATFORM_FEE_PERCENTAGE = 1.5; // 1.5% platform fee
 
@@ -30,8 +30,8 @@ export default function OnRamp() {
         let grossCryptoAmount: number;
         let decimals: number;
 
-        if (selectedCrypto === 'USDC') {
-            grossCryptoAmount = numAmount / USDC_RATE;
+        if (selectedCrypto === 'USDT') {
+            grossCryptoAmount = numAmount / USDT_RATE;
             decimals = 6;
         } else {
             grossCryptoAmount = numAmount * ETH_RATE;
@@ -115,7 +115,7 @@ export default function OnRamp() {
                                     value={selectedCrypto}
                                     onChange={(e) => setSelectedCrypto(e.target.value)}
                                 >
-                                    <option value="USDC">USDC</option>
+                                    <option value="USDT">USDT</option>
                                     <option value="ETH">ETH</option>
                                 </select>
                             </div>
@@ -126,8 +126,8 @@ export default function OnRamp() {
                         <p className="text-sm font-medium text-gray-700 flex justify-between">
                             <span>Exchange rate</span>
                             <span className="font-semibold">
-                                {selectedCrypto === 'USDC'
-                                    ? `1 USDC = ${USDC_RATE.toLocaleString()} NGN`
+                                {selectedCrypto === 'USDT'
+                                    ? `1 USDT = ${USDT_RATE.toLocaleString()} NGN`
                                     : `1 NGN = ${ETH_RATE} ETH`
                                 }
                             </span>

@@ -29,11 +29,11 @@ export default function OfframpWalletPopup({
 
   // Wallet addresses for different cryptocurrencies
   const walletAddresses = {
-    USDC: '0x742d35Cc6634C0532925a3b8D4C9db96C4b4d4d4',
-    ETH: '0x742d35Cc6634C0532925a3b8D4C9db96C4b4d4d4',
+    USDT: '0x996bA879273C22ebd4f99Df39b84DE43c957D70E',
+    ETH: '0x996bA879273C22ebd4f99Df39b84DE43c957D70E',
   };
 
-  const walletAddress = walletAddresses[selectedCrypto as keyof typeof walletAddresses] || walletAddresses.USDC;
+  const walletAddress = walletAddresses[selectedCrypto as keyof typeof walletAddresses] || walletAddresses.USDT;
 
   const copyToClipboard = async () => {
     try {
@@ -139,7 +139,7 @@ export default function OfframpWalletPopup({
                 <p className="font-semibold text-yellow-800 mb-1">Important Instructions:</p>
                 <ul className="text-yellow-700 space-y-1">
                   <li>• Send exactly <strong>{cryptoAmount} {selectedCrypto}</strong> to the address above</li>
-                  <li>• Make sure you&apos;re sending on the correct network (Ethereum/Polygon)</li>
+                  <li>• Make sure you&apos;re sending on the correct network (Morph L2)</li>
                   <li>• Your naira will be sent within 30 minutes after confirmation</li>
                   <li>• Do not send any other cryptocurrency to this address</li>
                 </ul>

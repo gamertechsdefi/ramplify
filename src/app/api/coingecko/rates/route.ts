@@ -9,6 +9,7 @@ export async function GET(request: NextRequest) {
 
     // Map crypto symbols to CoinGecko IDs
     const coinGeckoIds: { [key: string]: string } = {
+      'USDT': 'tether',
       'USDC': 'usd-coin',
       'ETH': 'ethereum',
       'BTC': 'bitcoin'
@@ -20,7 +21,7 @@ export async function GET(request: NextRequest) {
         {
           success: false,
           error: 'Unsupported currency',
-          message: `Currency ${fromCurrency} is not supported. Supported: USDC, ETH, BTC`,
+          message: `Currency ${fromCurrency} is not supported. Supported: USDT, USDC, ETH, BTC`,
         },
         { status: 400 }
       );
