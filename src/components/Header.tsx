@@ -1,5 +1,6 @@
 
 'use client'
+import Image from "next/image";
 import Link from "next/link";
 import { useState } from "react";
 
@@ -11,10 +12,7 @@ export default function Header() {
       <nav className="relative w-full mx-4 md:mx-8 mt-4 backdrop-blur bg-green-950 border border-green-900 rounded-xl px-4 sm:px-6 py-4 flex items-center gap-6 shadow-md">
         {/* Logo */}
         <Link href="/" className="flex items-center mr-2 z-10">
-          <svg width="28" height="28" viewBox="0 0 28 28" fill="none" xmlns="http://www.w3.org/2000/svg">
-            <rect width="28" height="28" rx="6" fill="#fff"/>
-            <path d="M8 16L13 8H20L15 16H8Z" fill="#15803D"/>
-          </svg>
+          <Image src="/ramplify/logo.png" alt="ramplify logo" width={50} height={50} className="rounded-xl" />
         </Link>
         {/* Desktop Nav */}
         <div className="hidden md:flex items-center gap-4 flex-1">

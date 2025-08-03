@@ -8,7 +8,7 @@ export default function Home() {
       <Header />
       <main>
         {/* landing page section */}
-        <section className="min-h-screen flex gap-2 flex-col items-center justify-center">
+        <section className="min-h-screen px-8 md:px-16 text-center flex gap-2 flex-col items-center justify-center">
          <h1 className="text-4xl font-bold">Enter & Exit Web3 Freely & Instantly With Ramplify</h1>
          <p>Connect your wallet and start exploring the world of Web3.</p>
 
